@@ -1,0 +1,33 @@
+<div class="dialog modal" id="dialog" tab-index="-1" role="dialog">
+  <div class="dialog-modal modal-dialog">
+    <div class="dialog-modal-content modal-content">
+      {{#header}}
+        <div class="dialog-modal-content-header modal-header">
+          <h1>
+            {{#alert}}
+              <i class="fa fa-check-circle"></i>
+            {{/alert}}
+            {{#confirm}}
+              <i class="fa fa-question-circle"></i>
+            {{/confirm}}
+          </h1>
+          {{#closeButton}}
+            <button class="close dialog-close-button" data-dismiss="modal" aria-hidden="true">
+              <i class="fa fa-times-circle"></i>
+            </button>
+          {{/closeButton}}
+        </div>
+      {{/header}}
+      <div class="dialog-modal-content-body modal-body">
+        {{message}}
+      </div>
+      {{#footer}}
+        <div class="dialog-modal-content-footer modal-footer">
+          {{#buttons}}
+            <button class="dialog-button btn {{className}}" data-type="{{type}}">{{label}}</button>
+          {{/buttons}}
+        </div>
+      {{/footer}}
+    </div>
+  </div>
+</div>

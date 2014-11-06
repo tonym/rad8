@@ -1,0 +1,13 @@
+<div class="nav list-control-row">
+  <ul class="nav nav-pills">
+    {{#pills}}
+      <li class="nav-item{{#active}} active{{/active}}">
+        <a href="{{href}}{{#id}}/{{id}}{{/id}}">
+          {{#icon}}<i class="fa {{icon}}"></i>{{/icon}}
+          {{label}}
+        </a>
+      </li>
+      {{custom}}
+    {{/pills}}
+  </ul>
+</div>

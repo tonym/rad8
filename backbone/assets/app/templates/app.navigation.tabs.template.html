@@ -1,0 +1,16 @@
+<div class="nav list-control-row list-control-row-tabs">
+  <ul class="nav nav-tabs{{#justified}} nav-justified{{/justified}}">
+    {{#tabs}}
+      <li class="nav-item{{#active}} active{{/active}}{{#classes}} {{classes}}{{/classes}}">
+        <a href="{{href}}{{#id}}/{{id}}{{/id}}">
+          {{#icon}}<i class="fa {{icon}}"></i>{{/icon}}
+          {{label}}
+        </a>
+      </li>
+      {{custom}}
+    {{/tabs}}
+    {{#singleTab}}
+      <li class="nav-item single-tab">&nbsp;</li>
+    {{/singleTab}}
+  </ul>
+</div>

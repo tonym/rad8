@@ -1,0 +1,8 @@
+{
+  "routes" : {
+    "" : "main"
+  },
+  "modules" : {
+    "main" : "js/amd/main/views/main.view"
+  }
+}
