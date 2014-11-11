@@ -108,7 +108,13 @@ define([
         var keys = name.split('.');
 
         for(var i = 0; i < keys.length; i++) {
-          ret = ret[keys[i]];
+          if(ret[keys[i]] && ret[keys[i]] !== 'undefined') {
+            ret = ret[keys[i]];
+          }
+          else {
+            ret = false;
+            break;
+          }
         }
 
         return ret;

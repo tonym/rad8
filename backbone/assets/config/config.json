@@ -1,8 +1,15 @@
 {
+  "modules" : {
+    "main" : "js/amd/main/views/main.view"
+  },
   "routes" : {
     "" : "main"
   },
-  "modules" : {
-    "main" : "js/amd/main/views/main.view"
+  "services" : {
+    "default" : {
+      "host" : "http://rad8.inspecdigital.org/",
+      "user" : "restuser",
+      "pass" : "restpassword"
+    }
   }
 }

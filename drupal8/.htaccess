@@ -59,6 +59,13 @@ DirectoryIndex index.php index.html index.htm
 <IfModule mod_rewrite.c>
   RewriteEngine on
 
+  # Stuff to allow cross domain XHR
+  Header always set Access-Control-Allow-Origin "*"
+  Header always set Access-Control-Allow-Methods "POST, GET, OPTIONS, PATCH, DELETE"
+  Header always set Access-Control-Allow-Headers: "PHP_AUTH_USER, PHP_AUTH_PW, Content-Type"
+  RewriteCond %{REQUEST_METHOD} OPTIONS
+  RewriteRule .* / [R=200,L]
+
   # Set "protossl" to "s" if we were accessed via https://.  This is used later
   # if you enable "www." stripping or enforcement, in order to ensure that
   # you don't bounce between http and https.

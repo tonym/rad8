@@ -123,7 +123,7 @@ define([
 
       if(!options.url) {
         options.url =
-          self.Navigation.getAPILink(
+          self.Navigation.getServiceLink(
             self.api[model.get('type')].replace('<id>', model.get('id'))
           );
       }
@@ -152,19 +152,22 @@ define([
     _fetchData : function(collection, options) {
 
       var self = this;
-      var _options = options.hasOwnProperty('prepareOptions') ?
-        options.prepareOptions(options) :
-        typeof this.prepareOptions === 'function' ?
-        this.prepareOptions(options) :
-        this._prepareOptions(options);
-
-      this[collection].fetch({
-        reset : _options.reset,
+      var _options = {
+        beforeSend : function(request) {
+          request.setRequestHeader('Content-Type', 'application/hal+json');
+          request.setRequestHeader('Accept', 'application/hal+json');
+          request.setRequestHeader('PHP_AUTH_USER', 'restuser');
+          request.setRequestHeader('PHP_AUTH_PW', 'restpassword');
+        },
+        accepts : 'application/hal+json',
         cache : false,
-        headers : { 'Application-Version' : self.Config.get('appVersion') },
+        crossDomain : true,
+        reset : false,
         success : function(result) {
-          self[collection] = _options.unshift ? result.at(0) : result;
-          self.handleCallback.success(_options);
+          if(result) {
+            self[collection] = _options.unshift ? result.at(0) : result;
+            self.handleCallback.success(_options);
+          }
         },
         error : function(model, response) {
           self[collection] = {};
@@ -178,7 +181,15 @@ define([
           self = null;
           _options = null;
         }
-      });
+      };
+
+      _options = _.merge(_options, options.hasOwnProperty('prepareOptions') ?
+        options.prepareOptions(options) :
+        typeof this.prepareOptions === 'function' ?
+        this.prepareOptions(options) :
+        this._prepareOptions(options));
+
+      this[collection].fetch(_options);
 
       return this;
 

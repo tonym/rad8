@@ -22,7 +22,7 @@ define([
   var Prototype = {
 
     api : {
-
+      main : 'node/1'
     },
 
     links : {
@@ -52,7 +52,7 @@ define([
 
       this.mainData = new MainCollection();
 
-      this.mainData.url = this.Navigation.getAPILink(this.api.contact);
+      this.mainData.url = this.Navigation.getServiceLink(this.api.main);
 
       _options = _.extend(_options, {
         reset : true,

@@ -29,8 +29,8 @@ define([
     Navigation : {
 
       templates : {
-        pills : Mustache.parse(appNavigationPillsTemplate ? appNavigationPillsTemplate : ''),
-        tabs : Mustache.parse(appNavigationTabsTemplate ? appNavigationTabsTemplate : '')
+        pills : Mustache.parse(appNavigationPillsTemplate),
+        tabs : Mustache.parse(appNavigationTabsTemplate)
       },
 
       /**
@@ -48,12 +48,13 @@ define([
 
       },
 
-      getAPILink : function(link, options) {
+      getServiceLink : function(link, options) {
 
         var _link = '' + link;
-        var _options = this.prepareOptions(options);
+        var _options = this.prepareOptions(
+          typeof options === 'string' ? { service : options } : options);
 
-        return _link.charAt(0) === '/' ? _link : _options.siteAPIUrl + _link;
+        return _link.charAt(0) === '/' ? _link : this.Config.get('services.' + _options.service + '.host') + _link;
 
       },
 
@@ -106,7 +107,7 @@ define([
           justified : true,
           singleTab : false,
           siteUrl : this.Config.get('siteUrl'),
-          siteAPIUrl : this.Config.get('siteAPIUrl'),
+          service : 'default',
           pills : [],
           tabs : [],
         };
