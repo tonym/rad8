@@ -28,6 +28,25 @@ define([
 
       Backbone.history.start({ pushState : self.hasPushState() });
 
+      $('body').undelegate('#workspace a', 'click');
+      $('body').delegate('#workspace a', 'click', function(e) {
+
+        var elem = $(this);
+        var ignore = elem.hasClass('ignore');
+
+        if(self.hasHashChange()) {
+          e.preventDefault();
+          if(!ignore) {
+            self.navigate(elem.attr('href'), {trigger : true});
+          }
+        }
+        else {
+          if(ignore) {
+            e.preventDefault();
+          }
+        }
+      });
+
     }
 
   });

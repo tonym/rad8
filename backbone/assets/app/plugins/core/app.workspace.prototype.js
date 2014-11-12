@@ -7,10 +7,12 @@
 
 define([
   'mustache',
-  'require.text!app/templates/app.flash_message.template.html'
+  'require.text!app/templates/app.flash_message.template.html',
+  'require.text!app/templates/app.spinner.template.html'
 ], function(
   Mustache,
-  appFlashMessageTemplate
+  appFlashMessageTemplate,
+  appSpinnerTemplate
 ) {
 
   'use strict';
@@ -55,17 +57,13 @@ define([
     },
 
     /**
-     * Compiled templates
-     * Mustache will compile each template before rendering.
-     * This isn't bad for one time rendering, but
-     * if templates are used in a loop, such as creating a
-     * list, it's not efficient to compile a template
-     * in each iteration of the loop.
+     * Templates
      *
      * @property {object} templates
      */
     templates : {
-      message : Mustache.parse(appFlashMessageTemplate)
+      message : appFlashMessageTemplate,
+      spinner : appSpinnerTemplate
     },
 
     /**
@@ -220,6 +218,15 @@ define([
       });
 
       this._scrollUp();
+
+      return this;
+
+    },
+
+    showSpinner : function() {
+
+      this.replaceBody({
+        partial : Mustache.render(this.templates.spinner) });
 
       return this;
 

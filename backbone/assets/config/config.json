@@ -1,9 +1,11 @@
 {
   "modules" : {
-    "main" : "js/amd/main/views/main.view"
+    "main" : "js/amd/main/views/main.view",
+    "main.story" : "js/amd/main/views/main.story.view"
   },
   "routes" : {
-    "" : "main"
+    "" : "main",
+    "story/*path" : "main.story"
   },
   "services" : {
     "default" : {

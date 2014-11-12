@@ -21,6 +21,8 @@ define([
 
     loadModule : function(module, options) {
 
+      console.log('loadModule');
+
       var self = this;
       var _options = {};
       var redirect = [];

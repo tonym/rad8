@@ -22,7 +22,8 @@ define([
   var Prototype = {
 
     api : {
-      main : 'node/1'
+      stories : 'stories',
+      story : '<story>'
     },
 
     links : {
@@ -34,32 +35,42 @@ define([
     },
 
     /**
-     * Main data object
+     * Main data objects
      *
      * @property {object} mainData
      */
-    mainData : {},
+    mainStories : {},
+    mainStory : {},
 
     /**
-     * Fetch a support data model
+     * Fetch main data model
      *
      * @method
      * @param {object} (options)
      */
-    fetchMainData : function(options) {
+    fetchMainStories : function(options) {
 
       var _options = this.prepareOptions(options);
 
-      this.mainData = new MainCollection();
+      this.mainStories = new MainCollection();
 
-      this.mainData.url = this.Navigation.getServiceLink(this.api.main);
+      this.mainStories.url = this.Navigation.getServiceLink(this.api.stories);
 
-      _options = _.extend(_options, {
-        reset : true,
-        unshift : true
-      });
+      return this._fetchData('mainStories', _options);
 
-      return this._fetchData('mainData', _options);
+    },
+
+    fetchMainStory : function(story, options) {
+
+      var _options = this.prepareOptions(options);
+
+      _options.unshift = true;
+
+      this.mainStory = new MainCollection();
+
+      this.mainStory.url = this.Navigation.getServiceLink(this.api.story.replace(this.api.story, story));
+
+      return this._fetchData('mainStory', _options);
 
     },
 
@@ -74,7 +85,10 @@ define([
      */
     prepareOptions : function(options) {
 
-      return this._prepareOptions(options);
+      var defaults = { reset : true,
+                       unshift : false };
+
+      return this._prepareOptions(defaults, options);
 
     }
 

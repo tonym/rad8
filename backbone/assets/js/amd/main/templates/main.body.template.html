@@ -1,1 +1,33 @@
-<p>workspace body</p>
+<div class="row">
+  <div class="col-xs-12">
+    <ol class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      {{#title}}
+        <li class="active">{{{value}}}</li>
+      {{/title}}
+    </ol>
+  </div>
+</div>
+
+{{#title}}
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>{{{value}}}</h3>
+    </div>
+  </div>
+{{/title}}
+{{#body}}
+  <div class="row">
+    <div class="col-xs-12">
+      {{{value}}}
+    </div>
+  </div>
+{{/body}}
+
+{{#models}}
+  <div class="row">
+    <div class="col-xs-12">
+      <a href="/story{{attributes.path}}">{{attributes.title}}</a>
+    </div>
+  </div>
+{{/models}}

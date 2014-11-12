@@ -51,7 +51,7 @@ define([
 
       this.showSpinner();
 
-      this.fetchMainStories({
+      this.fetchMainStory(_options.segments[0], {
         complete : function() {
           self.render(_.extend(_options, {
             success : function() {
@@ -72,7 +72,7 @@ define([
 
       var self = this;
       var _options = {};
-      var body = Mustache.render(options.hasOwnProperty('body') ? options.body : mainBodyTemplate, this.mainStories);
+      var body = Mustache.render(options.hasOwnProperty('body') ? options.body : mainBodyTemplate, this.mainStory.attributes);
 
       _options = _.extend({
         partial : body,
