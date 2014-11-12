@@ -22,7 +22,9 @@ define([
       var self = this;
 
       this.on('route', function(module, options) {
-        var _options = { segments : options };
+        var _options = self._prepareOptions(
+          { segments : options, reset : true },
+          options);
         self.loadModule(module, _options);
       });
 

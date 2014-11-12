@@ -21,8 +21,6 @@ define([
 
     loadModule : function(module, options) {
 
-      console.log('loadModule');
-
       var self = this;
       var _options = {};
       var redirect = [];
@@ -31,8 +29,10 @@ define([
       this.clearActive();
 
       if(typeof module === 'string' && module.match('redirect:')) {
+
         redirect = module.split(':');
         Backbone.history.navigate(redirect[1], true);
+
       }
       else {
 
