@@ -81,15 +81,14 @@ define([
       $('body').undelegate('a', 'click');
       $('body').delegate('a',
         'click', function(e) {
-        var ignore = false;
-        if($(this).hasClass('ignore') ||
-          $(this).attr('href').match(/javascript:/)) {
-          ignore = true;
-        }
+
+        var elem = $(this);
+        var ignore = elem.hasClass('ignore');
+
         if(self.hasHashChange()) {
+          e.preventDefault();
           if(!ignore) {
-            e.preventDefault();
-            self.navigate($(this).attr('href'), {trigger : true});
+            self.navigate(elem.attr('href'), {trigger : true});
           }
         }
         else {
@@ -105,31 +104,6 @@ define([
       if(!this.hasPushState()) {
         $('a').on('click', function() { $(this).blur(); });
       }
-
-      /**
-       * Init the tooltips
-       */
-      $('[rel="tooltip"]').tooltip();
-
-      /**
-       * Make the selects pretty and typeaheady
-       */
-      $('select').chosen({ allow_single_deselect: true });
-
-      /**
-       * Init the data row visibility controls
-       */
-      $('body').undelegate('.row-collapse', 'click');
-      $('body').delegate('.row-collapse', 'click', function() {
-        var control = $(this);
-        var elem = control.attr('data-target');
-        $(elem).toggle({
-          effect : 'blind',
-          complete : function() {
-            control.find('i').toggleClass('icon-minus-sign icon-plus-sign');
-          }
-        });
-      });
 
     },
 

@@ -1,6 +1,5 @@
 /**
  * @file main.view.js
- * @author tmaxymillian
  * @alias MainView
  * @mixes MainPrototype
  */
