@@ -13,7 +13,12 @@
       'angular.mocks'    : 'lib/angular-mocks/angular-mocks.min',
       'angular.resource' : 'lib/angular-resource/angular-resource.min',
       'angular.route'    : 'lib/angular-route/angular-route.min',
-      'require.text'     : 'lib/requirejs-text/text'
+      'app'              : 'js/app',
+      'controllers'      : 'js/controllers',
+      'directives'       : 'js/directives',
+      'require.text'     : 'lib/requirejs-text/text',
+      'routes'           : 'js/routes',
+      'services'         : 'js/services'
     },
     shim: {
       'angular'       : { exports : 'angular' },

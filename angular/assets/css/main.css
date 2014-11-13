@@ -1,3 +1,7 @@
 /**
  * @file main.css
  */
+
+.navbar { text-transform: uppercase; }
+.navbar img { height: 100%; }
+.navbar ul li { text-align: left; }
