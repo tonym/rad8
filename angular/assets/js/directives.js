@@ -4,13 +4,13 @@
 
 define([
   'angular',
-  'services'
+  'js/services'
 ], function(
   angular,
   services
 ){
 
- angular.module('rad8.directives', ['rad8.services'])
+ angular.module('rad8.directives', [])
     .directive('appVersion', ['version', function(version) {
       return function(scope, elm, attrs) {
         elm.text(version);

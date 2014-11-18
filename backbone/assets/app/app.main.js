@@ -1,7 +1,6 @@
 /**
- * @file main.js
- * @author Tony M
- * @alias main
+ * @file app.main.js
+ * @alias app.main
  */
 
 /**
@@ -31,7 +30,7 @@ require.config({
       configFile : '/config/config.json'
     }
   },
-  baseUrl : '/',
+  baseUrl : '/assets',
   packages : ['app'],
   shim : {
     'app.router' : ['app']

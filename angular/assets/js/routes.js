@@ -4,7 +4,7 @@
 
 define([
   'angular',
-  'app'
+  'js/app'
 ], function(
   angular,
   app
@@ -14,17 +14,17 @@ define([
 
   return app.config(['$routeProvider', function($routeProvider) {
 
-    $routeProvider.when('/view1', {
-      templateUrl: 'app/partials/partial1.html',
-      controller: 'MyCtrl1'
+    $routeProvider.when('/', {
+      templateUrl: '/assets/templates/landing.main.partial.tpl',
+      controller: 'rad8StoriesController'
     });
 
-    $routeProvider.when('/view2', {
-      templateUrl: 'app/partials/partial2.html',
-      controller: 'MyCtrl2'
+    $routeProvider.when('/:story', {
+      teplateUrl: '/assets/templates/story.main.partial.tpl',
+      controller: 'rad8StoriesController'
     });
 
-    $routeProvider.otherwise({redirectTo: '/view1'});
+    $routeProvider.otherwise({redirectTo: '/'});
 
   }]);
 

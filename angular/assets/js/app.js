@@ -1,27 +1,20 @@
 /**
  * @file app.js
  */
-
 define([
   'angular',
-  'angular.route',
-  'controllers',
-  'directives',
-  'services'
+  'js/controllers',
+  'angularRoute'
 ], function (
   angular,
-  filters,
-  services,
-  directives,
-  controllers
+  controllers,
+  angularRoute
 ) {
 
     'use strict';
 
     return angular.module('rad8', [
       'ngRoute',
-      'rad8.services',
-      'rad8.directives',
       'rad8.controllers'
     ]);
 

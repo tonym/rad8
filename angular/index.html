@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="rad8App">
+<html lang="en" ng-app="rad8" class="no-js">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,7 +21,7 @@
     <script src="/assets/lib/gumby/js/libs/modernizr-2.6.2.min.js" gumby-media="only screen and (min-width: 1px)"></script>
 
   </head>
-  <body ng-controller="rad8StoriesController">
+  <body>
     <div class="twelve colgrid">
       <header>
         <div class="navbar metro" id="nav-primary">
@@ -37,6 +37,12 @@
               <li>
                 <a href="/">Fairy Tales</a>
               </li>
+              <li class="append field">
+                <input type="text" class="wide input" placeholder="Search">
+                <div class="medium info btn">
+                  <a href="#"><i class="fa fa-search"></i></a>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -46,19 +52,14 @@
           <h1>Grimm's Fairy Tales</h1>
         </div>
       </div>
+
       <div class="row">
         <div class="twelve columns">
-          <ul>
-            <li ng-repeat="story in stories | orderBy:'title'">
-              <p>{{story.title}}</p>
-            </li>
-          </ul>
+          <div ng-view></div>
         </div>
       </div>
+
     </div>
-    <!--script data-main="/assets/js/main" src="/assets/lib/requirejs/require.js"></script-->
-    <script src="/assets/lib/angular/angular.min.js"></script>
-    <script src="/assets/js/controllers.js"></script>
-    <script src="/assets/lib/gumby/js/main.js"></script>
+    <script data-main="/assets/js/main" src="/assets/lib/requirejs/require.js"></script>
   </body>
 </head>
