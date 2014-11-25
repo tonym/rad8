@@ -7,11 +7,15 @@
     "" : "main",
     "story/*path" : "main.story"
   },
-  "services" : {
-    "default" : {
-      "host" : "http://rad8.inspecdigital.org/",
-      "user" : "restuser",
-      "pass" : "restpassword"
+"services" : {
+  "default" : {
+    "host" : "http://rad8.inspecdigital.org/",
+    "headers" : {
+      "Content-Type" : "application/hal+json",
+      "Accept" : "application/hal+json",
+      "PHP_AUTH_USER" : "restuser",
+      "PHP_AUTH_PW" : "restpassword"
     }
   }
+}
 }

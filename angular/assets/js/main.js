@@ -5,13 +5,15 @@
 require.config({
   baseUrl : '/assets',
   paths: {
-    angular      : 'lib/angular/angular.min',
-    angularRoute : 'lib/angular-route/angular-route.min',
-    requireText  : 'lib/requirejs-text/text',
+    angular         : 'lib/angular/angular.min',
+    angularResource : 'lib/angular-resource/angular-resource.min',
+    angularRoute    : 'lib/angular-route/angular-route.min',
+    requireText     : 'lib/requirejs-text/text',
   },
   shim : {
-    'angular'      : { 'exports' : 'angular' },
-    'angularRoute' : [ 'angular' ],
+    angular         : { 'exports' : 'angular' },
+    angularResource : [ 'angular' ],
+    angularRoute    : [ 'angular' ]
   },
   priority : [ 'angular' ]
 });

@@ -116,6 +116,16 @@ define([
       }
     },
 
+    /**
+     * Early versions of Backbone did not support patch.
+     * This patches an entire model
+     *
+     * @protected
+     * @param  {number} modelId
+     * @param  {object} options
+     * @return {boolean}
+     * @depricated
+     */
     _patch : function(modelId, options) {
 
       var self = this;

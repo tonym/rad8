@@ -4,7 +4,7 @@
 
 define([
   'angular',
-  'angular.resource'
+  'angularResource'
 ], function(
   angular,
   angularResource
@@ -12,18 +12,36 @@ define([
 
   'use strict';
 
-  var drupalService = angular.module('drupalService', ['ngResource']);
+  var _options = {
+    service : '//rad8.inspecdigital.org/',
+    endpoints : {
+      stories : 'stories',
+      story : '{{path}}'
+    },
+    headers : {
+      'Content-type' : 'application/hal+json',
+      'Accept' : 'application/hal+json',
+      'PHP_AUTH_USER' : 'restuser',
+      'PHP_AUTH_PW' : 'restpassword'
+    }
+  };
 
-  drupalService.factory('Drupal', ['$resource', function($resource) {
-    return $resource('http://www.inspecdigital.com/rad8/:path', {}, {
-      get : { method : 'GET' },
-      post : { method : 'POST' },
-      patch : { method : 'PATCH' }
+  var services = angular.module('rad8Services', ['ngResource']);
+
+  services.factory('Stories', ['$resource', function($resource) {
+
+    return $resource(_options.service + _options.endpoints.stories, {}, {
+      fetch : { method : 'GET', headers : _options.headers, isArray : true }
     });
+
   }]);
 
-  angular.module('rad8.services', []).value('version', 'dev');
+  services.factory('Story', ['$resource', function($resource) {
 
-  return this;
+    return $resource(_options.service);
+
+  }]);
+
+  return services;
 
 });

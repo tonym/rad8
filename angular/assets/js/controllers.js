@@ -2,26 +2,34 @@
  * @file controllers.js
  */
 
-define(['angular'], function(angular) {
+define([
+  'angular',
+  'js/services'
+], function(
+  angular,
+  services
+) {
 
-  return angular.module('rad8.controllers', [])
-    .controller('rad8StoriesController', ['$scope', '$http', function($scope, $http) {
+  var controllers = angular.module('rad8Controllers', []);
 
-      $scope.dataLoaded = false;
+  controllers.controller('rad8StoriesController', ['$scope', 'Stories', function($scope, Stories) {
 
-      $http.get('//rad8.inspecdigital.org/stories', { headers : {
-                                                        'Content-type' : 'application/hal+json',
-                                                        'Accept' : 'application/hal+json',
-                                                        'PHP_AUTH_USER' : 'restuser',
-                                                        'PHP_AUTH_PW' : 'restpassword'
-                                                        }
-      }).success(function(response) {
-        $scope.dataLoaded = true;
-        $scope.stories = response;
-      }).error(function(response) {
-        console.log(response);
-      });
+    $scope.dataLoaded = false;
 
-    }]);
+    $scope.stories = Stories.fetch();
+    $scope.stories.$promise.then(function(result) {
+      $scope.dataLoaded = true;
+    });
+
+  }]);
+
+  controllers.controller('rad8StoryController', ['$scope', '$routeParams', 'Story', function($scope, $routeParams, Story) {
+
+    console.log($routeParams);
+
+  }]);
+
+
+  return controllers;
 
 });

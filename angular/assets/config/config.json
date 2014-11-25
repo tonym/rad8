@@ -1,0 +1,17 @@
+{
+  "services" : {
+    "d8" : {
+      "url" : "//rad8.inspecdigital.org/",
+      "endpoints" : {
+        "stories" : "stories",
+        "story" : "{{path}}"
+      },
+      "headers" : {
+        "Content-type" : "application/hal+json",
+        "Accept" : "application/hal+json",
+        "PHP_AUTH_USER" : "restuser",
+        "PHP_AUTH_PW" : "restpassword"
+      }
+    }
+  }
+}
